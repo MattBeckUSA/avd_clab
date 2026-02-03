@@ -1,6 +1,6 @@
 ---
 - name: Enable eAPI on Arista EOS switches
-  hosts: dc1-spine1
+  hosts: all
   gather_facts: false
   connection: ansible.netcommon.network_cli
   vars:
