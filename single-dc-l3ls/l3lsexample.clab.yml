@@ -1,0 +1,69 @@
+name: single-dc-l3ls
+
+mgmt:
+  network: clab-mgmt-net
+  ipv4-subnet: 172.100.100.0/24
+  ipv6-subnet: fd00:100:100::/64
+
+topology:
+  nodes:
+    dc1-spine1:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-spine2:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf1a:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf1b:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf2a:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf2b:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf1c:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    dc1-leaf2c:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+    server01:
+      kind: linux
+      image: ghcr.io/hellt/network-multitool:latest
+    server02:
+      kind: linux
+      image: ghcr.io/hellt/network-multitool:latest
+
+  links:
+    # Spine1 to leaves
+    - endpoints: ["dc1-spine1:Ethernet1", "dc1-leaf1a:Ethernet1"]
+    - endpoints: ["dc1-spine1:Ethernet2", "dc1-leaf1b:Ethernet1"]
+    - endpoints: ["dc1-spine1:Ethernet3", "dc1-leaf2a:Ethernet1"]
+    - endpoints: ["dc1-spine1:Ethernet4", "dc1-leaf2b:Ethernet1"]
+
+    # Spine2 to leaves
+    - endpoints: ["dc1-spine2:Ethernet1", "dc1-leaf1a:Ethernet2"]
+    - endpoints: ["dc1-spine2:Ethernet2", "dc1-leaf1b:Ethernet2"]
+    - endpoints: ["dc1-spine2:Ethernet3", "dc1-leaf2a:Ethernet2"]
+    - endpoints: ["dc1-spine2:Ethernet4", "dc1-leaf2b:Ethernet2"]
+
+    # MLAG peer-links (example using Eth3-4 on each pair)
+    - endpoints: ["dc1-leaf1a:Ethernet3", "dc1-leaf1b:Ethernet3"]
+    - endpoints: ["dc1-leaf1a:Ethernet4", "dc1-leaf1b:Ethernet4"]
+    - endpoints: ["dc1-leaf2a:Ethernet3", "dc1-leaf2b:Ethernet3"]
+    - endpoints: ["dc1-leaf2a:Ethernet4", "dc1-leaf2b:Ethernet4"]
+
+    # L2 leaf uplinks (example)
+    - endpoints: ["dc1-leaf1c:Ethernet1", "dc1-leaf1a:Ethernet8"]
+    - endpoints: ["dc1-leaf1c:Ethernet2", "dc1-leaf1b:Ethernet8"]
+    - endpoints: ["dc1-leaf2c:Ethernet1", "dc1-leaf2a:Ethernet8"]
+    - endpoints: ["dc1-leaf2c:Ethernet2", "dc1-leaf2b:Ethernet8"]
+
+    # Linux clients attached to leaf switches
+    - endpoints: ["server01:eth1", "dc1-leaf1c:Ethernet5"]
+    - endpoints: ["server02:eth1", "dc1-leaf2c:Ethernet5"]
+    
