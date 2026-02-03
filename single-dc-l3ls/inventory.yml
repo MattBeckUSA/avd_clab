@@ -20,25 +20,25 @@ all:
             DC1_SPINES:
               hosts:
                 dc1-spine1:
-                  ansible_host: 172.100.100.10
+                  ansible_host: 172.100.100.100
                 dc1-spine2:
-                  ansible_host: 172.100.100.7
+                  ansible_host: 172.100.100.101
             DC1_L3_LEAVES:
               hosts:
                 dc1-leaf1a:
-                  ansible_host: 172.100.100.5
+                  ansible_host: 172.100.100.102
                 dc1-leaf1b:
-                  ansible_host: 172.100.100.9
+                  ansible_host: 172.100.100.103
                 dc1-leaf2a:
-                  ansible_host: 172.100.100.3
+                  ansible_host: 172.100.100.104
                 dc1-leaf2b:
-                  ansible_host: 172.100.100.6
+                  ansible_host: 172.100.100.105
             DC1_L2_LEAVES:
               hosts:
                 dc1-leaf1c:
-                  ansible_host: 172.100.100.2
+                  ansible_host: 172.100.100.106
                 dc1-leaf2c:
-                  ansible_host: 172.100.100.4
+                  ansible_host: 172.100.100.107
 
     NETWORK_SERVICES:
       children:
