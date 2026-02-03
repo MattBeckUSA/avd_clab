@@ -1,0 +1,3 @@
+#activate my AVD Python venv from anywhere:
+    source ~/labs/avd/venv/bin/activate
+
