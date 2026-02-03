@@ -1,0 +1,21 @@
+---
+- name: Enable eAPI on Arista EOS switches
+  hosts: dc1-spine1
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+  vars:
+    ansible_user: admin
+    ansible_password: admin
+    ansible_become: true
+    ansible_become_method: enable
+    ansible_become_password: admin
+
+  tasks:
+    - name: Ensure eAPI is enabled with HTTPS
+      arista.eos.eos_eapi:
+        state: started
+        http: true
+        # https_port: 443
+        local_http: true
+        local_http_port: 80
+        socket: true
