@@ -1,7 +1,0 @@
-#activate my AVD Python venv from anywhere:
-    source ~/labs/avd/venv/bin/activate
-
-#Useful commands:
-    nc -zv 172.100.100.9 443 - used to see if a remote port (443) is open on 100.9
-
-Container Lab will (by default) build the lab in the same folder as the topology file.
