@@ -43,9 +43,9 @@ server01:
     username: 
     password: 
     platform: linux
-    hostname: 172.16.100.2
+    hostname: 172.16.100.3
 server02:
     username: 
     password: 
     platform: linux
-    hostname: 172.16.100.3
+    hostname: 172.16.100.2

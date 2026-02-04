@@ -1,0 +1,19 @@
+- name: Validate eAPI reachability to all cEOS nodes
+  hosts: all
+  gather_facts: false
+  connection: ansible.netcommon.httpapi  # or just 'httpapi' if using module defaults
+  vars:
+    ansible_httpapi_use_ssl: true          # set false if using plain HTTP
+    ansible_httpapi_validate_certs: false  # usually needed for self-signed certs in labs
+    ansible_user: admin
+    ansible_password: admin                # or use ansible-vault / keyring
+  tasks:
+    - name: Test eAPI connection and gather facts
+      arista.eos.eos_facts:
+        gather_subset: min  # minimal facts to reduce load; or 'all' / '!config'
+      register: facts_result
+
+    - name: Display success message if reachable
+      ansible.builtin.debug:
+        msg: "eAPI is reachable on {{ inventory_hostname }} – running EOS {{ ansible_facts.net_version }}"
+      when: facts_result is success

@@ -7,6 +7,15 @@ eos_designs_documentation:
   topology_csv: true
   p2p_links_csv: true
 
+# Disable OOB management interface config (no Management interface IP/VRF setup) for CLAB
+mgmt_interface: Management0
+
+# Disable default gateway in management VRF (or any management routing) for CLAB
+# mgmt_gateway: null
+
+# Explicitly place management interface in default VRF (if any config is still generated) for CLAB
+mgmt_interface_vrf: default
+
 # Define underlay and overlay routing protocol to be used
 underlay_routing_protocol: ebgp
 overlay_routing_protocol: ebgp

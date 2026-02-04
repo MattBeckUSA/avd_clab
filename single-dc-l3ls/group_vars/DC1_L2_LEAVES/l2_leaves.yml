@@ -13,7 +13,7 @@ l2leaf:
         - name: dc1-leaf1c
           id: 1
           # mgmt_ip: 172.16.1.151/24
-          mgmt_ip: 172.100.100.2/24
+          mgmt_ip: 172.16.100.106/24
           uplink_switch_interfaces: [Ethernet8, Ethernet8]
     - group: DC1_L2_LEAF2
       uplink_switches: [dc1-leaf2a, dc1-leaf2b]
@@ -21,5 +21,5 @@ l2leaf:
         - name: dc1-leaf2c
           id: 2
           # mgmt_ip: 172.16.1.152/24
-          mgmt_ip: 172.100.100.4/24
+          mgmt_ip: 172.16.100.107/24
           uplink_switch_interfaces: [Ethernet8, Ethernet8]

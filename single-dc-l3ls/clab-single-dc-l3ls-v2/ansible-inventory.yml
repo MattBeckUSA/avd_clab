@@ -30,6 +30,6 @@ all:
     linux:
       hosts:
         clab-single-dc-l3ls-v2-server01:
-          ansible_host: 172.16.100.2
-        clab-single-dc-l3ls-v2-server02:
           ansible_host: 172.16.100.3
+        clab-single-dc-l3ls-v2-server02:
+          ansible_host: 172.16.100.2
