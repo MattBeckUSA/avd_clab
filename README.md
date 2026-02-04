@@ -6,6 +6,17 @@
 curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"
 ```
 
+## Checksum and then Import a cEOS image into the containerlab host
+```bash
+sha512sum -c cEOS-lab-4.35.0F.tar.sha512sum && \
+docker import cEOS-lab-4.35.0F.tar.xz ceos:4.35.0F
+```
+
+## Start cLab
+```bash
+sudo containerlab deploy --topo single-dc-l3ls/l3lsexample.clab.yml
+```
+
 ## Install `uv`
 ```bash
 # On macOS and Linux.
