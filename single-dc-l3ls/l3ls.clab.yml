@@ -1,0 +1,85 @@
+name: single-dc-l3ls-v2
+
+mgmt:
+  network: clab-mgmt-net
+  ipv4-subnet: 172.16.100.0/24
+  ipv6-subnet: fd00:100:100::/64
+
+topology:
+  nodes:
+    dc1-spine1:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.100
+    dc1-spine2:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.101
+    dc1-leaf1a:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.102
+    dc1-leaf1b:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.103
+    dc1-leaf2a:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.104
+    dc1-leaf2b:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.105
+    dc1-leaf1c:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.106
+    dc1-leaf2c:
+      kind: arista_ceos
+      image: ceos:4.35.0F
+      # network-mode: host
+      mgmt-ipv4: 172.16.100.107
+    server01:
+      kind: linux
+      image: ghcr.io/hellt/network-multitool:latest
+    server02:
+      kind: linux
+      image: ghcr.io/hellt/network-multitool:latest
+
+  links:
+    # Spine1 to leaves
+    - endpoints: ["dc1-spine1:eth1", "dc1-leaf1a:eth1"]
+    - endpoints: ["dc1-spine1:eth2", "dc1-leaf1b:eth1"]
+    - endpoints: ["dc1-spine1:eth3", "dc1-leaf2a:eth1"]
+    - endpoints: ["dc1-spine1:eth4", "dc1-leaf2b:eth1"]
+
+    # Spine2 to leaves
+    - endpoints: ["dc1-spine2:eth1", "dc1-leaf1a:eth2"]
+    - endpoints: ["dc1-spine2:eth2", "dc1-leaf1b:eth2"]
+    - endpoints: ["dc1-spine2:eth3", "dc1-leaf2a:eth2"]
+    - endpoints: ["dc1-spine2:eth4", "dc1-leaf2b:eth2"]
+
+    # MLAG peer-links (example using Eth3-4 on each pair)
+    - endpoints: ["dc1-leaf1a:eth3", "dc1-leaf1b:eth3"]
+    - endpoints: ["dc1-leaf1a:eth4", "dc1-leaf1b:eth4"]
+    - endpoints: ["dc1-leaf2a:eth3", "dc1-leaf2b:eth3"]
+    - endpoints: ["dc1-leaf2a:eth4", "dc1-leaf2b:eth4"]
+
+    # L2 leaf uplinks (example)
+    - endpoints: ["dc1-leaf1c:eth1", "dc1-leaf1a:eth8"]
+    - endpoints: ["dc1-leaf1c:eth2", "dc1-leaf1b:eth8"]
+    - endpoints: ["dc1-leaf2c:eth1", "dc1-leaf2a:eth8"]
+    - endpoints: ["dc1-leaf2c:eth2", "dc1-leaf2b:eth8"]
+
+    # Linux clients attached to leaf switches
+    - endpoints: ["server01:eth1", "dc1-leaf1c:eth5"]
+    - endpoints: ["server02:eth1", "dc1-leaf2c:eth5"]
+    

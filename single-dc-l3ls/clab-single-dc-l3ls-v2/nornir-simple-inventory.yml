@@ -1,0 +1,51 @@
+---
+dc1-leaf1a:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.102
+dc1-leaf1b:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.103
+dc1-leaf1c:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.106
+dc1-leaf2a:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.104
+dc1-leaf2b:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.105
+dc1-leaf2c:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.107
+dc1-spine1:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.100
+dc1-spine2:
+    username: admin
+    password: admin
+    platform: arista_ceos
+    hostname: 172.16.100.101
+server01:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.16.100.2
+server02:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.16.100.3
