@@ -1,0 +1,12 @@
+[project]
+name = "avd-clab"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ansible>=11.13.0",
+    "ansible-lint>=26.1.1",
+    "ansible-runner>=2.4.2",
+    "pyavd[ansible]==5.7.2",
+]
