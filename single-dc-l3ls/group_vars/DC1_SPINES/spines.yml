@@ -19,9 +19,9 @@ spine:
       id: 1
       # Node management interface IPv4 address
       # mgmt_ip: 172.16.1.11/24
-      mgmt_ip: 172.100.100.10/24
+      mgmt_ip: 172.16.100.100/24
 
     - name: dc1-spine2
       id: 2
       # mgmt_ip: 172.16.1.12/24
-      mgmt_ip: 172.100.100.7/24
+      mgmt_ip: 172.16.100.101/24

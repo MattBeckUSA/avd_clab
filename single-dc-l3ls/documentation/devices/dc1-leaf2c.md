@@ -44,23 +44,22 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 172.100.100.4/24 | 172.100.100.1 |
+| Management0 | OOB_MANAGEMENT | oob | default | 172.16.100.107/24 | 172.16.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
+| Management0 | OOB_MANAGEMENT | oob | default | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
-interface Management1
+interface Management0
    description OOB_MANAGEMENT
    no shutdown
-   vrf MGMT
-   ip address 172.100.100.4/24
+   ip address 172.16.100.107/24
 ```
 
 ### IP Name Servers
@@ -69,12 +68,12 @@ interface Management1
 
 | Name Server | VRF | Priority |
 | ----------- | --- | -------- |
-| 8.8.8.8 | MGMT | - |
+| 8.8.8.8 | default | - |
 
 #### IP Name Servers Device Configuration
 
 ```eos
-ip name-server vrf MGMT 8.8.8.8
+ip name-server vrf default 8.8.8.8
 ```
 
 ### Domain Lookup
@@ -83,12 +82,12 @@ ip name-server vrf MGMT 8.8.8.8
 
 | Source interface | vrf |
 | ---------------- | --- |
-| Management1 | MGMT |
+| Management0 | - |
 
 #### DNS Domain Lookup Device Configuration
 
 ```eos
-ip domain lookup vrf MGMT source-interface Management1
+ip domain lookup source-interface Management0
 ```
 
 ### NTP
@@ -99,20 +98,20 @@ ip domain lookup vrf MGMT source-interface Management1
 
 | Interface | VRF |
 | --------- | --- |
-| Management1 | MGMT |
+| Management0 | default |
 
 ##### NTP Servers
 
 | Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
 | ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 0.pool.ntp.org | MGMT | True | - | - | - | - | - | - | - |
+| 0.pool.ntp.org | default | True | - | - | - | - | - | - | - |
 
 #### NTP Device Configuration
 
 ```eos
 !
-ntp local-interface vrf MGMT Management1
-ntp server vrf MGMT 0.pool.ntp.org prefer
+ntp local-interface Management0
+ntp server 0.pool.ntp.org prefer
 ```
 
 ### Management API HTTP
@@ -127,7 +126,7 @@ ntp server vrf MGMT 0.pool.ntp.org prefer
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
-| MGMT | - | - |
+| default | - | - |
 
 #### Management API HTTP Device Configuration
 
@@ -137,7 +136,7 @@ management api http-commands
    protocol https
    no shutdown
    !
-   vrf MGMT
+   vrf default
       no shutdown
 ```
 
@@ -314,12 +313,10 @@ service routing protocols model multi-agent
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | False |
 
 #### IP Routing Device Configuration
 
 ```eos
-no ip routing vrf MGMT
 ```
 
 ### IPv6 Routing
@@ -329,7 +326,7 @@ no ip routing vrf MGMT
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | false |
+| default | false |
 
 ### Static Routes
 
@@ -337,13 +334,13 @@ no ip routing vrf MGMT
 
 | VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
 | --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| MGMT | 0.0.0.0/0 | 172.100.100.1 | - | 1 | - | - | - |
+| default | 0.0.0.0/0 | 172.16.100.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+ip route 0.0.0.0/0 172.16.100.1
 ```
 
 ## Multicast
@@ -367,11 +364,8 @@ ip route vrf MGMT 0.0.0.0/0 172.100.100.1
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
-| MGMT | disabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
-!
-vrf instance MGMT
 ```

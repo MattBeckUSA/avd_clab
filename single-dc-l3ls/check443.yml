@@ -6,7 +6,7 @@
 
     - name: Attempt connection to port 443
       ansible.builtin.uri:
-        url: "https://{{ inventory_hostname }}"
+        url: "https://{{ inventory_hostname }}/command-api/"
         method: HEAD
         validate_certs: false           # ← change to true in production
         follow_redirects: safe
