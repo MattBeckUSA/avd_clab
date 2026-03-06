@@ -36,12 +36,13 @@ ethernet_interfaces:
 hostname: dc1-leaf1c
 ip_domain_lookup:
   source_interfaces:
-  - name: Management0
+  - name: Management1
+    vrf: MGMT
 ip_igmp_snooping:
   globally_enabled: true
 ip_name_servers:
 - ip_address: 8.8.8.8
-  vrf: default
+  vrf: MGMT
 local_users:
 - name: admin
   privilege: 15
@@ -54,12 +55,12 @@ local_users:
 management_api_http:
   enable_https: true
   enable_vrfs:
-  - name: default
+  - name: MGMT
 management_interfaces:
-- name: Management0
+- name: Management1
   description: OOB_MANAGEMENT
   shutdown: false
-  vrf: default
+  vrf: MGMT
   ip_address: 172.16.100.106/24
   type: oob
   gateway: 172.16.100.1
@@ -69,12 +70,12 @@ metadata:
   fabric_name: FABRIC
 ntp:
   local_interface:
-    name: Management0
-    vrf: default
+    name: Management1
+    vrf: MGMT
   servers:
   - name: 0.pool.ntp.org
     preferred: true
-    vrf: default
+    vrf: MGMT
 port_channel_interfaces:
 - name: Port-Channel1
   description: L2_DC1_L3_LEAF1_Port-Channel8
@@ -91,7 +92,7 @@ spanning_tree:
   - id: '0'
     priority: 32768
 static_routes:
-- vrf: default
+- vrf: MGMT
   prefix: 0.0.0.0/0
   next_hop: 172.16.100.1
 transceiver_qsfp_default_mode_4x10: true
@@ -120,5 +121,5 @@ vlans:
   name: L2_VLAN3402
   tenant: TENANT1
 vrfs:
-- name: default
+- name: MGMT
   ip_routing: false

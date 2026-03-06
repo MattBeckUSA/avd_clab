@@ -63,12 +63,13 @@ ethernet_interfaces:
 hostname: dc1-leaf2a
 ip_domain_lookup:
   source_interfaces:
-  - name: Management0
+  - name: Management1
+    vrf: MGMT
 ip_igmp_snooping:
   globally_enabled: true
 ip_name_servers:
 - ip_address: 8.8.8.8
-  vrf: default
+  vrf: MGMT
 ip_routing: true
 ip_virtual_router_mac_address: 00:1c:73:00:00:99
 local_users:
@@ -102,12 +103,12 @@ loopback_interfaces:
 management_api_http:
   enable_https: true
   enable_vrfs:
-  - name: default
+  - name: MGMT
 management_interfaces:
-- name: Management0
+- name: Management1
   description: OOB_MANAGEMENT
   shutdown: false
-  vrf: default
+  vrf: MGMT
   ip_address: 172.16.100.104/24
   type: oob
   gateway: 172.16.100.1
@@ -124,12 +125,12 @@ mlag_configuration:
   reload_delay_non_mlag: '330'
 ntp:
   local_interface:
-    name: Management0
-    vrf: default
+    name: Management1
+    vrf: MGMT
   servers:
   - name: 0.pool.ntp.org
     preferred: true
-    vrf: default
+    vrf: MGMT
 port_channel_interfaces:
 - name: Port-Channel3
   description: MLAG_dc1-leaf2b_Port-Channel3
@@ -375,7 +376,7 @@ spanning_tree:
     priority: 4096
   no_spanning_tree_vlan: 4093-4094
 static_routes:
-- vrf: default
+- vrf: MGMT
   prefix: 0.0.0.0/0
   next_hop: 172.16.100.1
 transceiver_qsfp_default_mode_4x10: true
@@ -481,7 +482,7 @@ vlans:
   name: L2_VLAN3402
   tenant: TENANT1
 vrfs:
-- name: default
+- name: MGMT
   ip_routing: false
 - name: VRF10
   ip_routing: true

@@ -47,10 +47,11 @@ ethernet_interfaces:
 hostname: dc1-spine1
 ip_domain_lookup:
   source_interfaces:
-  - name: Management0
+  - name: Management1
+    vrf: MGMT
 ip_name_servers:
 - ip_address: 8.8.8.8
-  vrf: default
+  vrf: MGMT
 ip_routing: true
 local_users:
 - name: admin
@@ -69,12 +70,12 @@ loopback_interfaces:
 management_api_http:
   enable_https: true
   enable_vrfs:
-  - name: default
+  - name: MGMT
 management_interfaces:
-- name: Management0
+- name: Management1
   description: OOB_MANAGEMENT
   shutdown: false
-  vrf: default
+  vrf: MGMT
   ip_address: 172.16.100.100/24
   type: oob
   gateway: 172.16.100.1
@@ -84,12 +85,12 @@ metadata:
   fabric_name: FABRIC
 ntp:
   local_interface:
-    name: Management0
-    vrf: default
+    name: Management1
+    vrf: MGMT
   servers:
   - name: 0.pool.ntp.org
     preferred: true
-    vrf: default
+    vrf: MGMT
 prefix_lists:
 - name: PL-LOOPBACKS-EVPN-OVERLAY
   sequence_numbers:
@@ -192,7 +193,7 @@ service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: none
 static_routes:
-- vrf: default
+- vrf: MGMT
   prefix: 0.0.0.0/0
   next_hop: 172.16.100.1
 transceiver_qsfp_default_mode_4x10: true
@@ -202,5 +203,5 @@ vlan_internal_order:
     beginning: 1006
     ending: 1199
 vrfs:
-- name: default
+- name: MGMT
   ip_routing: false
