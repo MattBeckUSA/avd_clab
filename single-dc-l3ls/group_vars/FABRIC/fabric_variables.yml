@@ -21,10 +21,10 @@ aaa_settings:
     #   # no_password: true
     #   sha512_password: "$6$HFrnHLOM/jpwpS8Z$rq7KMlzC8ZdHAKVqCNOr6BDw3Hk/DrqgqubgHnY4.JKZ9GwT6R/XyuHno8TdGVuEAIz5zUAJ1soequyw2T5yM0"
     # Username with a password
-    - name: arista
-      privilege: 15
-      role: network-admin
-      sha512_password: "$6$Enl0WfE32FthwyiJ$yTyGaEJ2uPKLU.F7314YtB7J1jrzrMi7ogXIRTEHQfLdLgKWWmr1UvNlZLN6AyuxET7G5aH3AI9OYRzxVTkB1."
+    # - name: arista
+    #   privilege: 15
+    #   role: network-admin
+    #   sha512_password: "$6$Enl0WfE32FthwyiJ$yTyGaEJ2uPKLU.F7314YtB7J1jrzrMi7ogXIRTEHQfLdLgKWWmr1UvNlZLN6AyuxET7G5aH3AI9OYRzxVTkB1."
 
 # BGP peer groups passwords
 bgp_peer_groups:

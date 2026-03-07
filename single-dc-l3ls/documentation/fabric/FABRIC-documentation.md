@@ -17,12 +17,12 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
-| FABRIC | l3leaf | dc1-leaf1a | - | cEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf1b | - | cEOS-lab | Provisioned | - |
-| FABRIC | l2leaf | dc1-leaf1c | - | cEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf2a | - | cEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf2b | - | cEOS-lab | Provisioned | - |
-| FABRIC | l2leaf | dc1-leaf2c | - | cEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf1a | 172.16.100.102/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf1b | 172.16.100.103/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l2leaf | dc1-leaf1c | 172.16.100.106/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf2a | 172.16.100.104/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | dc1-leaf2b | 172.16.100.105/24 | cEOS-lab | Provisioned | - |
+| FABRIC | l2leaf | dc1-leaf2c | 172.16.100.107/24 | cEOS-lab | Provisioned | - |
 | FABRIC | spine | dc1-spine1 | 172.16.100.100/24 | cEOS-lab | Provisioned | - |
 | FABRIC | spine | dc1-spine2 | 172.16.100.101/24 | cEOS-lab | Provisioned | - |
 

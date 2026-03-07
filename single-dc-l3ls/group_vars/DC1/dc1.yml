@@ -1,15 +1,20 @@
 ---
 #This causes AVD to skip the configuration of the management interface and gateway, which is useful for lab environments where these may not be needed or are configured differently.
 # Completely disable AVD management interface config
-mgmt_interface: null
-mgmt_gateway: null
+mgmt_interface: Management0
+mgmt_gateway: 172.16.100.1
 mgmt_ip: null
 mgmt_subnet: null
 mgmt_ipv4: null
-mgmt_interface_vrf: null
+mgmt_interface_vrf: MGMT
 # mgmt_interface_vrf: default   # or just omit this line
 
 # This was the original content of dc1.yml before I modified it to skip management interface configuration. The original content is left here for reference in case you want to revert the changes or compare with the new configuration.
 # ---
 # # Default gateway used for the management interface
 # mgmt_gateway: 172.16.100.1
+
+# === CRITICAL: Prevent AVD from touching the admin account ===
+eos_cli_config_gen_admin_password: null
+eos_cli_config_gen_admin_role: null
+eos_cli_config_gen_admin_privilege: null

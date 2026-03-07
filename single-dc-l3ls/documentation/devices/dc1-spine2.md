@@ -9,7 +9,6 @@
   - [NTP](#ntp)
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
-  - [Local Users](#local-users)
   - [Enable Password](#enable-password)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
@@ -24,6 +23,7 @@
   - [Service Routing Protocols Model](#service-routing-protocols-model)
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
+  - [Static Routes](#static-routes)
   - [Router BGP](#router-bgp)
 - [BFD](#bfd)
   - [Router BFD](#router-bfd)
@@ -44,19 +44,19 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.101/24 | - |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.101/24 | 172.16.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
-interface Management1
+interface Management0
    description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
@@ -83,12 +83,12 @@ ip name-server vrf MGMT 8.8.8.8
 
 | Source interface | vrf |
 | ---------------- | --- |
-| Management1 | MGMT |
+| Management0 | MGMT |
 
 #### DNS Domain Lookup Device Configuration
 
 ```eos
-ip domain lookup vrf MGMT source-interface Management1
+ip domain lookup vrf MGMT source-interface Management0
 ```
 
 ### NTP
@@ -99,7 +99,7 @@ ip domain lookup vrf MGMT source-interface Management1
 
 | Interface | VRF |
 | --------- | --- |
-| Management1 | MGMT |
+| Management0 | MGMT |
 
 ##### NTP Servers
 
@@ -111,7 +111,7 @@ ip domain lookup vrf MGMT source-interface Management1
 
 ```eos
 !
-ntp local-interface vrf MGMT Management1
+ntp local-interface vrf MGMT Management0
 ntp server vrf MGMT 0.pool.ntp.org prefer
 ```
 
@@ -142,21 +142,6 @@ management api http-commands
 ```
 
 ## Authentication
-
-### Local Users
-
-#### Local Users Summary
-
-| User | Privilege | Role | Disabled | Shell |
-| ---- | --------- | ---- | -------- | ----- |
-| arista | 15 | network-admin | False | - |
-
-#### Local Users Device Configuration
-
-```eos
-!
-username arista privilege 15 role network-admin secret sha512 <removed>
-```
 
 ### Enable Password
 
@@ -307,6 +292,21 @@ no ip routing vrf MGMT
 | --- | --------------- |
 | default | False |
 | MGMT | false |
+
+### Static Routes
+
+#### Static Routes Summary
+
+| VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
+| --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
+| MGMT | 0.0.0.0/0 | 172.16.100.1 | - | 1 | - | - | - |
+
+#### Static Routes Device Configuration
+
+```eos
+!
+ip route vrf MGMT 0.0.0.0/0 172.16.100.1
+```
 
 ### Router BGP
 
