@@ -73,10 +73,6 @@ ip_name_servers:
 ip_routing: true
 ip_virtual_router_mac_address: 00:1c:73:00:00:99
 local_users:
-- name: admin
-  privilege: 15
-  role: network-admin
-  sha512_password: $6$HFrnHLOM/jpwpS8Z$rq7KMlzC8ZdHAKVqCNOr6BDw3Hk/DrqgqubgHnY4.JKZ9GwT6R/XyuHno8TdGVuEAIz5zUAJ1soequyw2T5yM0
 - name: arista
   privilege: 15
   role: network-admin
@@ -111,7 +107,6 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.16.100.104/24
   type: oob
-  gateway: 172.16.100.1
 metadata:
   is_deployed: true
   platform: cEOS-lab
@@ -375,10 +370,6 @@ spanning_tree:
   - id: '0'
     priority: 4096
   no_spanning_tree_vlan: 4093-4094
-static_routes:
-- vrf: MGMT
-  prefix: 0.0.0.0/0
-  next_hop: 172.16.100.1
 transceiver_qsfp_default_mode_4x10: true
 virtual_source_nat_vrfs:
 - name: VRF10

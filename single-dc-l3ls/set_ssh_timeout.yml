@@ -1,0 +1,39 @@
+---
+- name: Set SSH idle timeout to 30 minutes on all cEOS nodes
+  hosts: all
+  gather_facts: false
+  connection: ansible.netcommon.httpapi
+
+  vars:
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: false
+    ansible_user: admin
+    ansible_password: admin
+    ansible_httpapi_timeout: 180
+    ansible_command_timeout: 180
+    ansible_persistent_connect_timeout: 180
+    ansible_persistent_command_timeout: 180
+
+  tasks:
+    - name: Configure SSH idle timeout to 30 minutes
+      arista.eos.eos_config:
+        lines:
+          - "idle-timeout 30"
+        parents:
+          - "management ssh"
+        save_when: changed
+      register: ssh_timeout_result
+
+    - name: Show result of SSH timeout change
+      ansible.builtin.debug:
+        msg: "SSH idle timeout set to 30 minutes on {{ inventory_hostname }} - changed={{ ssh_timeout_result.changed }}"
+
+    - name: Verify current SSH timeout configuration
+      arista.eos.eos_command:
+        commands:
+          - show running-config | section management ssh
+      register: timeout_verify
+
+    - name: Display current SSH configuration
+      ansible.builtin.debug:
+        msg: "{{ timeout_verify.stdout_lines }}"

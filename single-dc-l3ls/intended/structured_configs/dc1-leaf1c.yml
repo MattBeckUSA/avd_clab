@@ -44,10 +44,6 @@ ip_name_servers:
 - ip_address: 8.8.8.8
   vrf: MGMT
 local_users:
-- name: admin
-  privilege: 15
-  role: network-admin
-  sha512_password: $6$HFrnHLOM/jpwpS8Z$rq7KMlzC8ZdHAKVqCNOr6BDw3Hk/DrqgqubgHnY4.JKZ9GwT6R/XyuHno8TdGVuEAIz5zUAJ1soequyw2T5yM0
 - name: arista
   privilege: 15
   role: network-admin
@@ -63,7 +59,6 @@ management_interfaces:
   vrf: MGMT
   ip_address: 172.16.100.106/24
   type: oob
-  gateway: 172.16.100.1
 metadata:
   is_deployed: true
   platform: cEOS-lab
@@ -91,10 +86,6 @@ spanning_tree:
   mst_instances:
   - id: '0'
     priority: 32768
-static_routes:
-- vrf: MGMT
-  prefix: 0.0.0.0/0
-  next_hop: 172.16.100.1
 transceiver_qsfp_default_mode_4x10: true
 vlan_internal_order:
   allocation: ascending

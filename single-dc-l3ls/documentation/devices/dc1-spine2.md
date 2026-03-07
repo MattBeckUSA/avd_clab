@@ -24,7 +24,6 @@
   - [Service Routing Protocols Model](#service-routing-protocols-model)
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
-  - [Static Routes](#static-routes)
   - [Router BGP](#router-bgp)
 - [BFD](#bfd)
   - [Router BFD](#router-bfd)
@@ -45,7 +44,7 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.101/24 | 172.16.100.1 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.101/24 | - |
 
 ##### IPv6
 
@@ -150,14 +149,12 @@ management api http-commands
 
 | User | Privilege | Role | Disabled | Shell |
 | ---- | --------- | ---- | -------- | ----- |
-| admin | 15 | network-admin | False | - |
 | arista | 15 | network-admin | False | - |
 
 #### Local Users Device Configuration
 
 ```eos
 !
-username admin privilege 15 role network-admin secret sha512 <removed>
 username arista privilege 15 role network-admin secret sha512 <removed>
 ```
 
@@ -310,21 +307,6 @@ no ip routing vrf MGMT
 | --- | --------------- |
 | default | False |
 | MGMT | false |
-
-### Static Routes
-
-#### Static Routes Summary
-
-| VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
-| --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| MGMT | 0.0.0.0/0 | 172.16.100.1 | - | 1 | - | - | - |
-
-#### Static Routes Device Configuration
-
-```eos
-!
-ip route vrf MGMT 0.0.0.0/0 172.16.100.1
-```
 
 ### Router BGP
 
