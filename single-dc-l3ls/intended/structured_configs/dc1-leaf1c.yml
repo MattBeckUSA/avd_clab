@@ -43,6 +43,11 @@ ip_igmp_snooping:
 ip_name_servers:
 - ip_address: 8.8.8.8
   vrf: MGMT
+local_users:
+- name: admin
+  privilege: 15
+  role: network-admin
+  no_password: true
 management_api_http:
   enable_https: true
   enable_vrfs:

@@ -15,6 +15,6 @@ mgmt_interface_vrf: MGMT
 # mgmt_gateway: 172.16.100.1
 
 # === CRITICAL: Prevent AVD from touching the admin account ===
-eos_cli_config_gen_admin_password: null
-eos_cli_config_gen_admin_role: null
-eos_cli_config_gen_admin_privilege: null
+# eos_cli_config_gen_admin_password: admin
+# eos_cli_config_gen_admin_role: network-admin
+# eos_cli_config_gen_admin_privilege: null

@@ -1,0 +1,63 @@
+! Startup-config last modified at Mon Mar  9 00:31:03 2026 by root
+! device: dc1-leaf2c (cEOSLab, EOS-4.35.0F-44178984.4350F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$RaxvSY/yQnsFxfdx$HvvnV7ypbdZX35l0.aQKO7Rv6iyAODpHiLHdW/QuUU6RzpnfmfT44Qdj/OFVEtkU3ar2leZojD1XgRAr5eoaX/
+!
+management api http-commands
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+no service interface inactive port-id allocation disabled
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname dc1-leaf2c
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api gnmi
+   transport grpc default
+      vrf MGMT
+!
+management api netconf
+   transport ssh default
+      vrf MGMT
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet5
+!
+interface Management0
+   vrf MGMT
+   ip address 172.16.100.107/24
+   ipv6 address fd00:100:100::7/64
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.16.100.1
+!
+ipv6 route vrf MGMT ::/0 fd00:100:100::1
+!
+router multicast
+   ipv4
+      software-forwarding kernel
+   !
+   ipv6
+      software-forwarding kernel
+!
+end

@@ -15,10 +15,10 @@ overlay_routing_protocol: ebgp
 aaa_settings:
   local_users:
     # Username with no password configured - I modified this to use the password set by CLAB
-    # - name: admin
-    #   privilege: 15
-    #   role: network-admin
-    #   # no_password: true
+    - name: admin
+      privilege: 15
+      role: network-admin
+      no_password: true
     #   sha512_password: "$6$HFrnHLOM/jpwpS8Z$rq7KMlzC8ZdHAKVqCNOr6BDw3Hk/DrqgqubgHnY4.JKZ9GwT6R/XyuHno8TdGVuEAIz5zUAJ1soequyw2T5yM0"
     # Username with a password
     # - name: arista

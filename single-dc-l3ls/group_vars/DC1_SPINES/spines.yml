@@ -17,11 +17,8 @@ spine:
     - name: dc1-spine1
       # Unique identifier used for IP addressing and other algorithms
       id: 1
-      # Node management interface IPv4 address
-      # Trying to prevent this from overwriting the one from CLAB.
       mgmt_ip: 172.16.100.100/24
 
     - name: dc1-spine2
       id: 2
-      # mgmt_ip: Trying to prevent this from overwriting the one from CLAB.
       mgmt_ip: 172.16.100.101/24
